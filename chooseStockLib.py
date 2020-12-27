@@ -3,6 +3,7 @@ import attributesLib
 url_summ ='https://finance.yahoo.com/quote/{}?p={}'
 url_stats = 'https://finance.yahoo.com/quote/{}/key-statistics?p={}'
 
+#Generates the screened buy list
 def generate_buy_list(stocks):
     list = []
     for i in stocks:
@@ -16,6 +17,7 @@ def generate_buy_list(stocks):
                 list.append(i)
     return list
 
+#Checks if a stock is irregular
 def check_irreg(fair, current):
     ratio = fair / current
     if ratio >= 5:
@@ -23,6 +25,7 @@ def check_irreg(fair, current):
     else:
         return False
 
+#Handles irregular stocks based on their Profit Margins
 def irreg_stock(stock, list):
     ticker = stock.ticker
     json_data = attributesLib.get_json(url_stats, ticker)
@@ -30,6 +33,7 @@ def irreg_stock(stock, list):
     if profit_margin >= 0.15:
         list.append(stock)
 
+#Gets the current price of each stock
 def get_current_price(stock):
     ticker = stock.ticker
     json_data = attributesLib.get_json(url_summ, ticker)

@@ -1,0 +1,8 @@
+All of this is based off of my previous Screener, buyingAlgorithm, and sellingAlgorithm repositories(private).
+This program is designed to do everything in the previous programs but all in one program
+This version is able to screen stocks, buy them in Alpaca API.
+
+Important things:
+-Needs to check if stock is already owned before buying
+-Needs to be tested during trading hours to see if sellLib works and that everything works together seamlessly
+-Needs to have a way to run constantly in the background during trading hours
