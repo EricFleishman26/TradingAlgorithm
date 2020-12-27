@@ -1,11 +1,7 @@
 import alpaca_trade_api as tradeapi
 
 def buy_stocks(stocks):
-    key = 'PKE4BWTD60R2QN1WMSM1'
-    sec = 'gVsggan9QBKw3AcyZuCdDZM9f3oz4r5U1LanYS3x'
-    url = 'https://paper-api.alpaca.markets'
-
-    api = tradeapi.REST(key, sec, url, api_version='v2')
+    api = connect_api()
 
     for i in stocks:
         buy = determine_if_buy(i)
@@ -19,3 +15,10 @@ def determine_if_buy(stock):
         return True
     else:
         return False
+
+def connect_api():
+    key = 'PKE4BWTD60R2QN1WMSM1'
+    sec = 'gVsggan9QBKw3AcyZuCdDZM9f3oz4r5U1LanYS3x'
+    url = 'https://paper-api.alpaca.markets'
+    api = tradeapi.REST(key, sec, url, api_version='v2')
+    return api

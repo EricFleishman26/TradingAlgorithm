@@ -2,6 +2,7 @@ import pandas as pd
 import attributesLib
 import chooseStockLib
 import buyLib
+import sellLib
 from classes import *
 
 #Open file containing tickers
@@ -23,3 +24,8 @@ buy_list = chooseStockLib.generate_buy_list(stocks)
 #Buy stocks
 buyLib.buy_stocks(buy_list)
 
+#Sell stocks
+sellLib.sell_stocks()
+
+#Needs to check if stock is already owned in the Alpaca API. If the stock is already owned, the program should not buy
+#If not, the program should buy
