@@ -4,7 +4,7 @@ from classes import *
 
 #Sells stocks that are determined to be sold
 def sell_stocks():
-    api = buyLib.connect_api()
+    api = buyLib.get_api()
     current_positions = api.list_positions()
     stocks = get_stock_objects(current_positions)
     attributesLib.get_attributes(stocks)
@@ -18,7 +18,7 @@ def sell_stocks():
 def get_stock_objects(list):
     objects = []
     for i in list:
-        objects.append(Stock(i.symbol))
+        objects.append(Stock(i))
     return objects
 
 #Determines if a stock is to be sold based on 50 and 200 day moving averages

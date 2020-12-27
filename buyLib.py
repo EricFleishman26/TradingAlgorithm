@@ -1,9 +1,12 @@
 import alpaca_trade_api as tradeapi
 
+key = 'PKE4BWTD60R2QN1WMSM1'
+sec = 'gVsggan9QBKw3AcyZuCdDZM9f3oz4r5U1LanYS3x'
+url = 'https://paper-api.alpaca.markets'
+api = tradeapi.REST(key, sec, url, api_version='v2')
+
 #Buys the stocks permitting they meet requirements
 def buy_stocks(stocks):
-    api = connect_api()
-
     for i in stocks:
         buy = determine_if_buy(i)
         if buy is True:
@@ -13,15 +16,22 @@ def buy_stocks(stocks):
 def determine_if_buy(stock):
     moving50 = stock.moving50
     moving200 = stock.moving200
-    if moving50 > moving200:
+    if_not_bought = check_if_bought(stock.ticker)
+    if (moving50 > moving200) and if_not_bought is True:
         return True
     else:
         return False
 
-#Connects to the Alpaca API
-def connect_api():
-    key = 'PKE4BWTD60R2QN1WMSM1'
-    sec = 'gVsggan9QBKw3AcyZuCdDZM9f3oz4r5U1LanYS3x'
-    url = 'https://paper-api.alpaca.markets'
-    api = tradeapi.REST(key, sec, url, api_version='v2')
+
+def check_if_bought(ticker):
+    bought_stocks = api.list_positions()
+
+    for i in bought_stocks:
+        if i == ticker:
+            return False
+    return True
+
+
+
+def get_api():
     return api
