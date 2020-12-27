@@ -9,9 +9,9 @@ from classes import *
 tickers = pd.read_csv('data.csv')
 df = pd.DataFrame(tickers)
 
-#Create Stock Objec
+#Create Stock Object
 stocks = []
-for i in range(5):
+for i in range(55):
     ticker = df.loc[i, "Ticker"].strip()
     stocks.append(Stock(ticker))
 
