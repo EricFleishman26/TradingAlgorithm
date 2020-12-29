@@ -1,12 +1,14 @@
 import buyLib
 import attributesLib
+import pandas as pd
 from classes import *
 
 #Sells stocks that are determined to be sold
 def sell_stocks():
     api = buyLib.get_api()
-    current_positions = api.list_positions()
-    stocks = get_stock_objects(current_positions)
+    positions = api.list_positions()
+    df = pd.DataFrame(positions)
+    stocks = get_stock_objects(df)
     attributesLib.get_attributes(stocks)
 
     for i in stocks:
@@ -15,10 +17,11 @@ def sell_stocks():
             api.submit_order(symbol=str(i.ticker), qty="10", side="sell", type="market", time_in_force="day")
 
 #Takes the tickers returned by the Alpaca API and makes them into Stock Objects
-def get_stock_objects(list):
+def get_stock_objects(df):
     objects = []
-    for i in list:
-        objects.append(Stock(i))
+    for i in range(len(df)):
+        ticker = df.loc[i,0]
+        objects.append(Stock(ticker.symbol))
     return objects
 
 #Determines if a stock is to be sold based on 50 and 200 day moving averages

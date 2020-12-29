@@ -1,7 +1,8 @@
 import alpaca_trade_api as tradeapi
+import pandas as pd
 
-key = 'PKE4BWTD60R2QN1WMSM1'
-sec = 'gVsggan9QBKw3AcyZuCdDZM9f3oz4r5U1LanYS3x'
+key = 'PKBNCU1670FN1OZTC1K6'
+sec = '5KcY3adRFfP4C40VbQTMdwYl1QBECwPqoQr9NdQa'
 url = 'https://paper-api.alpaca.markets'
 api = tradeapi.REST(key, sec, url, api_version='v2')
 
@@ -24,7 +25,12 @@ def determine_if_buy(stock):
 
 
 def check_if_bought(ticker):
-    bought_stocks = api.list_positions()
+    positions = api.list_positions()
+    df = pd.DataFrame(positions)
+    bought_stocks = []
+
+    for i in range(len(df)):
+        bought_stocks.append((df.loc[i,0]).symbol)
 
     for i in bought_stocks:
         if i == ticker:
