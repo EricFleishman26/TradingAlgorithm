@@ -3,6 +3,7 @@ import attributesLib
 import chooseStockLib
 import buyLib
 import sellLib
+import timeControl as tc
 from classes import *
 
 #Open file containing tickers
@@ -15,17 +16,19 @@ for i in range(5):
     ticker = df.loc[i, "Ticker"].strip()
     stocks.append(Stock(ticker))
 
-#Give the Stock Objects in the stocks list all of their attributes
-attributesLib.get_attributes(stocks)
+market_open = tc.market_status()
 
-#Make list of stocks to buy
-buy_list = chooseStockLib.generate_buy_list(stocks)
+while market_open is True:
+    #Give the Stock Objects in the stocks list all of their attributes
+    attributesLib.get_attributes(stocks)
 
-#Buy stocks
-buyLib.buy_stocks(buy_list)
+    #Make list of stocks to buy
+    buy_list = chooseStockLib.generate_buy_list(stocks)
 
-#Sell stocks
-sellLib.sell_stocks()
+    #Buy stocks
+    buyLib.buy_stocks(buy_list)
 
-#Needs to check if stock is already owned in the Alpaca API. If the stock is already owned, the program should not buy
-#If not, the program should buy
+    #Sell stocks
+    sellLib.sell_stocks()
+
+    market_open = tc.market_status()

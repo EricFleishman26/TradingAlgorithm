@@ -14,7 +14,7 @@ def buy_stocks(stocks):
             print("Buying: ", i.ticker)
             api.submit_order(symbol=str(i.ticker), qty="10", side="buy", type="market", time_in_force="day")
         else:
-            print("Already Bought: ", i.ticker)
+            print("Not Buying: ", i.ticker)
 
 #Determines if a screened stock is to be bought based on 50 and 200 day moving averages
 def determine_if_buy(stock):
@@ -39,7 +39,6 @@ def check_if_bought(ticker):
         if i == ticker:
             return False
     return True
-
 
 
 def get_api():

@@ -1,23 +1,14 @@
 import datetime
 
+def market_status():
+    date_time = datetime.datetime.now()
+    hour = int(date_time.strftime("%H"))
+    minute = int(date_time.strftime("%M"))
+    time = hour + (minute * 0.01)
 
-def get_hour():
-    time = datetime.datetime.now()
-    hour = int(time.strftime("%H"))
-    return hour
-
-
-def get_minute():
-    time = datetime.datetime.now()
-    minute = int(time.strftime("%M"))
-    return minute
-
-
-def time_control():
-    hour = get_hour()
-    minute = get_minute()
-    if hour >= 15:
-        if minute >= 30:
-            return False
-    else:
+    if time >= 8.3 and time < 15.3:
+        print("Market is Open")
         return True
+    else:
+        print("Market is Closed")
+        return False
