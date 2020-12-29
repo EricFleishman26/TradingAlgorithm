@@ -13,7 +13,6 @@ url_financials = 'https://finance.yahoo.com/quote/{}/financials?p={}'
 #Assigns all Stock Objects their attributes
 def get_attributes(stocks):
     for i in stocks:
-        print(i.ticker)
         i.eps = get_eps(i)
         i.growth= get_growth(i)
         i.pe_ratio = get_pe_ratio(i)

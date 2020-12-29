@@ -1,8 +1,8 @@
 import alpaca_trade_api as tradeapi
 import pandas as pd
 
-key = 'PKBNCU1670FN1OZTC1K6'
-sec = '5KcY3adRFfP4C40VbQTMdwYl1QBECwPqoQr9NdQa'
+key = 'PKSBOY08TIFRKQ8GAH4W'
+sec = 'Q9pZTtTNW8oNC5p57xAdpk8WsNWMVTXSnBDQ16Ua'
 url = 'https://paper-api.alpaca.markets'
 api = tradeapi.REST(key, sec, url, api_version='v2')
 
@@ -11,7 +11,10 @@ def buy_stocks(stocks):
     for i in stocks:
         buy = determine_if_buy(i)
         if buy is True:
+            print("Buying: ", i.ticker)
             api.submit_order(symbol=str(i.ticker), qty="10", side="buy", type="market", time_in_force="day")
+        else:
+            print("Already Bought: ", i.ticker)
 
 #Determines if a screened stock is to be bought based on 50 and 200 day moving averages
 def determine_if_buy(stock):

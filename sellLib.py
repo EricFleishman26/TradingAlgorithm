@@ -14,7 +14,10 @@ def sell_stocks():
     for i in stocks:
         sell = determine_if_sell(i)
         if sell is True:
+            print("Selling: ", i.ticker)
             api.submit_order(symbol=str(i.ticker), qty="10", side="sell", type="market", time_in_force="day")
+        else:
+            print("Not Selling: ", i.ticker)
 
 #Takes the tickers returned by the Alpaca API and makes them into Stock Objects
 def get_stock_objects(df):
