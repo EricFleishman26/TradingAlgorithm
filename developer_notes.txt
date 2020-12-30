@@ -1,9 +1,9 @@
 All of this is based off of my previous Screener, buyingAlgorithm, and sellingAlgorithm repositories(private).
 This program is designed to do everything in the previous programs but all in one program
-This version is able to screen stocks, buy them in Alpaca API.
+This version is able to screen stocks, buy them in Alpaca API. It is also able to get the current positions from the API and determine if it wants to sell any of them
 
 Important things:
 -Needs to have a way to run constantly in the background during trading hours. (Looking into implementation with timeControl.py)
 
 -Needs to run much faster. As of right now, the program spends too much time parsing yahoo finance for attributes. Would be nice to
-have all of this done when the program first starts up and just reuse the original attributes throughout the day
+have all of this done when the program first starts up and just reuse the original attributes throughout the day(Implementing in sellLib.py)

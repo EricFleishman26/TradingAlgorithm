@@ -35,3 +35,6 @@ def determine_if_sell(stock):
         return True
     else:
         return False
+
+#PLAN FOR REVISION: Needs to take the stocks already owned from the API and get their attributes from the attribute list already stored. Doing this would speed up program's
+#Execution time
