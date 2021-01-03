@@ -7,6 +7,7 @@ This version now stores attributes for a faster run time.
 
 Important things:
 -Needs to detect weekends and market holidays
+-sellLib not working correctly
 
 
 Long Term Goals:
