@@ -32,6 +32,8 @@ while True:
         except:
             print("Nothing to sell, no Stocks Owned...")
 
+        attributesLib.refresh_moving(stocks)
+
         market_open = tc.market_status()
 
 

@@ -10,7 +10,7 @@ def sell_stocks(stored):
 
     for i in owned_tickers:
         for j in stored:
-            if i == j.ticker:
+            if i.ticker == j.ticker:
                 i = j
     for i in owned_tickers:
         if i.moving50 < i.moving200:

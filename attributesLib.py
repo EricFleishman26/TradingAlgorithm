@@ -86,6 +86,11 @@ def get_moving(stock, days):
         moving = json_data['context']['dispatcher']['stores']['QuoteSummaryStore']['summaryDetail']['twoHundredDayAverage']['raw']
     return moving
 
+def refresh_moving(stocks):
+    for i in stocks:
+        i.moving50 = get_moving(i, 50)
+        i.moving200 = get_moving(i, 200)
+
 #Gets json data from URL
 def get_json(url, ticker):
     response = requests.get(url.format(ticker,ticker))
