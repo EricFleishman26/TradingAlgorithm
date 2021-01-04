@@ -1,29 +1,27 @@
 import buyLib
-import attributesLib
 import pandas as pd
 from classes import *
 
-#Sells stocks that are determined to be sold
-def sell_stocks(stored):
-    owned_tickers = get_api_tickers()
-    api = buyLib.get_api()
-
-    for i in owned_tickers:
-        for j in stored:
-            if i.ticker == j.ticker:
-                i = j
-    for i in owned_tickers:
-        if i.moving50 < i.moving200:
-            api.submit_order(symbol=str(i.ticker), qty="10", side="sell", type="market", time_in_force="day")
-
-
-def get_api_tickers():
-    tickers = []
+def sell_stocks(stocks):
     api = buyLib.get_api()
     positions = api.list_positions()
-    df = pd.DataFrame(positions)
+    my_tickers = get_owned_tickers(positions)
 
+    for i in my_tickers:
+        i = Stock(i)
+        for j in stocks:
+            if j.ticker == i.ticker:
+                i = j
+                testy = i.moving50
+                testy2 = i.moving200
+                if i.moving50 < i.moving200:
+                    test = i.ticker
+                    api.submit_order(symbol=i.ticker, qty="10", side="sell", type="market", time_in_force="day")
+
+def get_owned_tickers(positions):
+    df = pd.DataFrame(positions)
+    tickers = []
     for i in range(len(df)):
-        tickers.append(Stock(df.loc[i,0].symbol))
+        tickers.append(df.loc[i,0].symbol)
 
     return tickers

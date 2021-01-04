@@ -6,33 +6,30 @@ import sellLib
 import timeControl as tc
 from classes import *
 
-tickers = pd.read_csv('data.csv')
-df = pd.DataFrame(tickers)
-
+stock_data = pd.read_csv('scraped_stocks.txt', sep=" ")
+df = pd.DataFrame(stock_data)
 stocks = []
-stored_stocks = []
-for i in range(len(df)):
-    ticker = df.loc[i, "Ticker"].strip()
-    stocks.append(Stock(ticker))
+
+for i in range(55):
+    stocks.append(Stock(df.loc[i, "Ticker"].strip()))
 
 while True:
+    stock_data = pd.read_csv('scraped_stocks.txt', sep=" ")
+    df = pd.DataFrame(stock_data)
+    attributesLib.get_attributes(stocks, df)
+
     market_open = tc.market_status()
 
-    if market_open is True and len(stored_stocks) < 1:
-        attributesLib.get_attributes(stocks)
-        stored_stocks = stocks
-
     while market_open is True:
-        buy_list = chooseStockLib.generate_buy_list(stocks)
+        #buy_list = chooseStockLib.generate_buy_list(stocks)
 
-        buyLib.buy_stocks(buy_list)
+        #buyLib.buy_stocks(buy_list)
 
-        try:
-            sellLib.sell_stocks(stored_stocks)
-        except:
-            print("Nothing to sell, no Stocks Owned...")
+        #try:
+        sellLib.sell_stocks(stocks)
+        #except:
+         #   print("Nothing to sell, no Stocks Owned...")
 
-        attributesLib.refresh_moving(stocks)
 
         market_open = tc.market_status()
 

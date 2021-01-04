@@ -1,14 +1,5 @@
-All of this is based off of my previous Screener, buyingAlgorithm, and sellingAlgorithm repositories(private).
-This program is designed to do everything in the previous programs but all in one program
-This version is able to screen stocks, buy them in Alpaca API. It is also able to get the current positions from the API and determine if it wants to sell any of them
+Now has implemented scraper program that works separately in order to improve run time. Attributes library and storage is mostly working.
 
-This version now implements timeControl.py in order to run constantly and detect when the market opens and closes.
-This version now stores attributes for a faster run time.
-
-Important things:
--Needs to detect weekends and market holidays
--sellLib not working correctly
-
-
-Long Term Goals:
--Get more attributes for comparison to make a more accurate algorithm
+Needs:
+-The sellLib is broken and needs to be fixed. I need to figure out a way to link the tickers
+from the api to Stock objects and give them their attributes from the attributes library.
