@@ -14,10 +14,8 @@ def sell_stocks(stored):
                 i = j
     for i in owned_tickers:
         if i.moving50 < i.moving200:
-            print("Selling: ", i.ticker)
             api.submit_order(symbol=str(i.ticker), qty="10", side="sell", type="market", time_in_force="day")
-        else:
-            print("Not Selling: ", i.ticker)
+
 
 def get_api_tickers():
     tickers = []
@@ -25,7 +23,7 @@ def get_api_tickers():
     positions = api.list_positions()
     df = pd.DataFrame(positions)
 
-    for i in range(5):
+    for i in range(len(df)):
         tickers.append(Stock(df.loc[i,0].symbol))
 
     return tickers

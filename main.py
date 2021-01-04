@@ -11,12 +11,12 @@ df = pd.DataFrame(tickers)
 
 stocks = []
 stored_stocks = []
-for i in range(5):
+for i in range(len(df)):
     ticker = df.loc[i, "Ticker"].strip()
     stocks.append(Stock(ticker))
 
 while True:
-    market_open = True
+    market_open = tc.market_status()
 
     if market_open is True and len(stored_stocks) < 1:
         attributesLib.get_attributes(stocks)
@@ -27,9 +27,12 @@ while True:
 
         buyLib.buy_stocks(buy_list)
 
-        sellLib.sell_stocks(stored_stocks)
+        try:
+            sellLib.sell_stocks(stored_stocks)
+        except:
+            print("Nothing to sell, no Stocks Owned...")
 
-        market_open = True
+        market_open = tc.market_status()
 
 
 
