@@ -12,10 +12,7 @@ def sell_stocks(stocks):
         for j in stocks:
             if j.ticker == i.ticker:
                 i = j
-                testy = i.moving50
-                testy2 = i.moving200
                 if i.moving50 < i.moving200:
-                    test = i.ticker
                     api.submit_order(symbol=i.ticker, qty="10", side="sell", type="market", time_in_force="day")
 
 def get_owned_tickers(positions):

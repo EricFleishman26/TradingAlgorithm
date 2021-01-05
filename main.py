@@ -21,14 +21,14 @@ while True:
     market_open = tc.market_status()
 
     while market_open is True:
-        #buy_list = chooseStockLib.generate_buy_list(stocks)
+        buy_list = chooseStockLib.generate_buy_list(stocks)
 
-        #buyLib.buy_stocks(buy_list)
+        buyLib.buy_stocks(buy_list)
 
-        #try:
-        sellLib.sell_stocks(stocks)
-        #except:
-         #   print("Nothing to sell, no Stocks Owned...")
+        try:
+            sellLib.sell_stocks(stocks)
+        except:
+            print("Nothing to sell, no Stocks Owned...")
 
 
         market_open = tc.market_status()
