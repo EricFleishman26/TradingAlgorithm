@@ -2,6 +2,6 @@ Now has implemented scraper program that works separately in order to improve ru
 sellLib is now working correctly. Also detects weekdays from weekends in timeControl.
 
 Needs:
-- Cloud solution to run permanently off of my machine
+- Cloud solution to run permanently but not on my machine
 - Review of algorithm (possible tweaking)
 - Continue testing corner cases and finding bugs
