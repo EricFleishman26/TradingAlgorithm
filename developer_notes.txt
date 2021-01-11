@@ -1,5 +1,7 @@
-Now has implemented scraper program that works separately in order to improve run time. Attributes library and storage is mostly working.
+Now has implemented scraper program that works separately in order to improve run time. Attributes library and storage is working.
+sellLib is now working correctly. Also detects weekdays from weekends in timeControl.
 
 Needs:
--The sellLib is broken and needs to be fixed. I need to figure out a way to link the tickers
-from the api to Stock objects and give them their attributes from the attributes library.
+- Cloud solution to run permanently off of my machine
+- Review of algorithm (possible tweaking)
+- Continue testing corner cases and finding bugs

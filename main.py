@@ -30,8 +30,4 @@ while True:
         except:
             print("Nothing to sell, no Stocks Owned...")
 
-
         market_open = tc.market_status()
-
-
-
